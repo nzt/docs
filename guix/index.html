@@ -1,0 +1,4 @@
+<h1>GUIX</h1> <h2>トラブルシュート</h2> <p>以下では日本語環境でGUIXを使用する際のよくある問題とその解決方法を示す。</p> <ol> <li> <p>コマンド<code>guix</code>を実行すると<code>guile: warning: failed to install locale</code>と表示される。</p> <p>上記のようなエラーが出るときは、guixで<code>glibc-utf8-locales</code>ではなく <strong><code>glibc-locales</code>をインストール</strong> し、 <strong>環境変数<code>GUIX_LOCPATH</code>を設定</strong>する。 これは、<code>glibc-utf8-locales</code>にはutf8の全てのロケールがインストールされるのではなく、欧米圏の限られたロケールしかインストールされないことから、 <code>glibc-locales</code>をインストールする必要がある。しかし、警告と同時に表示されるヒントでは、 <code>glibc-utf8-locales</code>をインストールするよう促されているため、日本語環境を使用しているユーザーは注意が必要である。</p> <pre class="language-sh"><code class="language-sh">$ guix install glibc-locales
+$ echo 'export GUIX_LOCPATH=&quot;$HOME/.guix-profile/lib/locale&quot;' &gt;&gt; $HOME/.bashrc
+$ source $HOME/.bashrc
+</code></pre> </li> </ol> 
