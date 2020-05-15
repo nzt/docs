@@ -17,4 +17,7 @@ $ <span class="token builtin class-name">source</span> <span class="token enviro
 % guix <span class="token function">install</span> glibc-locales
 % <span class="token builtin class-name">echo</span> <span class="token string">'export GUIX_LOCPATH="<span class="token environment constant">$HOME</span>/.guix-profile/lib/locale"'</span> <span class="token operator">>></span> <span class="token environment constant">$HOME</span>/.bashrc
 % <span class="token builtin class-name">source</span> <span class="token environment constant">$HOME</span>/.bashrc
+</code></pre> </li> <li> <p>GUIのアプリケーションで文字化けする。</p> <p>GUIX内でのフォントのキャッシュが更新されていないことが原因です。したがって <strong><code>fontcnofig</code>と適当なフォントをインストール</strong> して<strong>フォントのキャッシュを更新</strong>することで解決します。</p> <pre class="language-shell"><code class="language-shell">$ guix instlal fontcnofig font-google-noto
+$ <span class="token builtin class-name">source</span> ~/.guix-profile/etc/profile
+$ fc-cache -fv
 </code></pre> </li> </ol> </main> <footer> <p>Copyright &copy; 2020 TANIGUCHI Masaya All Rights Reserved.</p> <p>Please tell me on <a href="https://github.com/nzt/docs">GitHub</a> if you found any typos and misstatements.</p> </footer> </body> </html> 
