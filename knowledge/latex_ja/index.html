@@ -1,29 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>日本語 LaTeX 作法 - www.docs.casa</title>
     <link rel="icon" href="data:," />
-    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css" onload="this.rel='stylesheet'"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Shippori+Mincho+B1:wght@400;700&display=swap" onload="this.rel='stylesheet'">
+    <link
+      rel="preload"
+      as="style"
+      href="https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css"
+      onload="this.rel='stylesheet'"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Shippori+Mincho+B1:wght@400;700&display=swap"
+      onload="this.rel='stylesheet'"
+    />
     <style>
       body {
-        font-family: 'Shippori Mincho B1', serif;
+        font-family: "Shippori Mincho B1", serif;
         width: min(900px, 100%);
         margin: 0 auto;
       }
-      @media(max-width: 900px) {
+      @media (max-width: 900px) {
         body {
           padding: 0 10px;
         }
       }
-      @media(min-width: 376px) {
+      @media (min-width: 376px) {
         main {
           display: grid;
           grid-template-columns: 2.4142fr 1fr;
-        } 
+        }
         article {
           padding-right: 10px;
         }
@@ -32,8 +42,9 @@
           padding-left: 10px;
         }
       }
-      pre, code {
-        font-family: 'Inconsolate', monospace;
+      pre,
+      code {
+        font-family: "Inconsolate", monospace;
       }
       pre > code {
         overflow: auto;
@@ -51,19 +62,25 @@
         display: flex;
         list-style: none;
       }
-      nav ul li:before{
+      nav ul li:before {
         content: " [ ";
       }
       nav ul li:after {
         content: " ] ";
       }
-      h1, h2, h3, h4, h5 {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
         margin: 1rem 0;
       }
       thead {
         border-bottom: 2px solid black;
       }
-      table, th, td {
+      table,
+      th,
+      td {
         border-collapse: collapse;
         border: 1px solid black;
       }
@@ -71,9 +88,7 @@
   </head>
   <body>
     <header>
-      <h1>
-        計算機と文字
-      </h1>
+      <h1>計算機と文字</h1>
       <nav>
         <ul>
           <li><a href="/">HOME</a></li>
@@ -83,271 +98,447 @@
     </header>
     <main>
       <article>
-      <h1>日本語 <span class="math math-inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.488ex;" xmlns="http://www.w3.org/2000/svg" width="5.788ex" height="2.108ex" role="img" focusable="false" viewBox="0 -716.3 2558.3 931.8" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-N-4C" d="M128 622Q121 629 117 631T101 634T58 637H25V683H36Q48 680 182 680Q324 680 348 683H360V637H333Q273 637 258 635T233 622L232 342V129Q232 57 237 52Q243 47 313 47Q384 47 410 53Q470 70 498 110T536 221Q536 226 537 238T540 261T542 272T562 273H582V268Q580 265 568 137T554 5V0H25V46H58Q100 47 109 49T128 61V622Z"></path><path id="MJX-1-TEX-N-41" d="M255 0Q240 3 140 3Q48 3 39 0H32V46H47Q119 49 139 88Q140 91 192 245T295 553T348 708Q351 716 366 716H376Q396 715 400 709Q402 707 508 390L617 67Q624 54 636 51T687 46H717V0H708Q699 3 581 3Q458 3 437 0H427V46H440Q510 46 510 64Q510 66 486 138L462 209H229L209 150Q189 91 189 85Q189 72 209 59T259 46H264V0H255ZM447 255L345 557L244 256Q244 255 345 255H447Z"></path><path id="MJX-1-TEX-N-54" d="M36 443Q37 448 46 558T55 671V677H666V671Q667 666 676 556T685 443V437H645V443Q645 445 642 478T631 544T610 593Q593 614 555 625Q534 630 478 630H451H443Q417 630 414 618Q413 616 413 339V63Q420 53 439 50T528 46H558V0H545L361 3Q186 1 177 0H164V46H194Q264 46 283 49T309 63V339V550Q309 620 304 625T271 630H244H224Q154 630 119 601Q101 585 93 554T81 486T76 443V437H36V443Z"></path><path id="MJX-1-TEX-N-45" d="M128 619Q121 626 117 628T101 631T58 634H25V680H597V676Q599 670 611 560T625 444V440H585V444Q584 447 582 465Q578 500 570 526T553 571T528 601T498 619T457 629T411 633T353 634Q266 634 251 633T233 622Q233 622 233 621Q232 619 232 497V376H286Q359 378 377 385Q413 401 416 469Q416 471 416 473V493H456V213H416V233Q415 268 408 288T383 317T349 328T297 330Q290 330 286 330H232V196V114Q232 57 237 52Q243 47 289 47H340H391Q428 47 452 50T505 62T552 92T584 146Q594 172 599 200T607 247T612 270V273H652V270Q651 267 632 137T610 3V0H25V46H58Q100 47 109 49T128 61V619Z"></path><path id="MJX-1-TEX-N-58" d="M270 0Q252 3 141 3Q46 3 31 0H23V46H40Q129 50 161 88Q165 94 244 216T324 339Q324 341 235 480T143 622Q133 631 119 634T57 637H37V683H46Q64 680 172 680Q297 680 318 683H329V637H324Q307 637 286 632T263 621Q263 618 322 525T384 431Q385 431 437 511T489 593Q490 595 490 599Q490 611 477 622T436 637H428V683H437Q455 680 566 680Q661 680 676 683H684V637H667Q585 634 551 599Q548 596 478 491Q412 388 412 387Q412 385 514 225T620 62Q628 53 642 50T695 46H726V0H717Q699 3 591 3Q466 3 445 0H434V46H440Q454 46 476 51T499 64Q499 67 463 124T390 238L353 295L350 292Q348 290 343 283T331 265T312 236T286 195Q219 88 218 84Q218 70 234 59T272 46H280V0H270Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><g data-mml-node="math"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><use xlink:href="#MJX-1-TEX-N-4C"></use></g><g data-mml-node="mspace" transform="translate(625, 0)"></g><g data-mml-node="mpadded" transform="translate(300, 0)"><g transform="translate(0, 210)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mstyle" transform="scale(0.707)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><use xlink:href="#MJX-1-TEX-N-41"></use></g></g></g></g></g></g><g data-mml-node="mspace" transform="translate(830.3, 0)"></g><g data-mml-node="mi" transform="translate(660.3, 0)"><use xlink:href="#MJX-1-TEX-N-54"></use></g><g data-mml-node="mspace" transform="translate(1382.3, 0)"></g><g data-mml-node="mpadded" transform="translate(1242.3, 0)"><g transform="translate(0, -215.5)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><use xlink:href="#MJX-1-TEX-N-45"></use></g></g></g></g><g data-mml-node="mspace" transform="translate(1923.3, 0)"></g><g data-mml-node="mi" transform="translate(1808.3, 0)"><use xlink:href="#MJX-1-TEX-N-58"></use></g></g></g></g></svg></mjx-container></span> 作法</h1>
-<h2>TeX ディストリビューション</h2>
-<ul>
-<li>Win32TeX</li>
-<li>TinyTeX</li>
-<li>TeXLive
-<ul>
-<li>minimal</li>
-<li>basic</li>
-<li>small</li>
-<li>medium</li>
-<li>full</li>
-</ul>
-</li>
-<li>MacTeX</li>
-<li>BasicTeX</li>
-<li>Drag &#x26; Drop UpTeX</li>
-<li>Tectonic</li>
-</ul>
-<h2>TeX エンジン</h2>
-<p>現在,日本語組版ができる TeX 処理系のうちメジャーなものは以下の通りである．</p>
-<ul>
-<li>pTeX, ε-pTeX (枯れた日本語対応の TeX 処理系．最も古くから存在する．1987 年誕生)</li>
-<li>upTeX, ε-upTeX (内部エンコーディングが Unicode になっている TeX 処理系．2007 年誕生)</li>
-<li>XeTeX (内部エンコーディングが Unicode になっており，システムのフォントを直接利用する TeX 処理系．2004 年誕生)</li>
-<li>pdfTeX (枯れた TeX 処理系，直接 PDF を出力する．1997 年誕生)</li>
-<li>LuaTeX (pdftex の後継で内部エンコーディングが Unicode であり，Lua でマクロがかける TeX 処理系，2007 年誕生)</li>
-</ul>
-<p>日本語で LaTeX の組版するときのおすすめ順は，LuaTeX, upTeX, pTeX, XeTeX, pdfTeX である．</p>
-<p>LuaTeX は現在 TeX コミュニティでフラグシップの TeX 処理系であり，日本語組版の開発も活発である．
-とくにフォントと PDF 関連の機能は LuaTeX が最も充実している．したがってインターネット上にあるテンプレートを使用しない場合は
-迷わず LuaTeX で十分なである．</p>
-<p>upTeX は日本において pTeX に続いて使用人口の多いと推定される TeX 処理系である．
-pTeX のほぼ上位互換であり，Unicode を使用できる pTeX であることから従来の pTeX を対象に作られた資産の移行先として有望である．
-また，LuaTeX は依然として他の TeX 処理系よりレンダリング速度が遅いので，巨大なドキュメントを頻繁にコンパイルするような環境では
-upTeX を使うと開発が快適になる．しかし，内部エンコーディングが pTeX と異なるので，いくつかのクラスファイルは
-upTeX に移行できない．</p>
-<p>pTeX は日本において最も使用人口の多い TeX 処理系である．
-もっとも古くから使用されていることから，ほとんどの TeX の資産が pTeX で使用できる．
-内部エンコーディングが Unicode ではないため，直接レンダリングできない文字がある．
-手っ取り早くドキュメントを作る場合は，pTeX がもっともトラブルが少ない．</p>
-<p>XeTeX は海外でよく使われている TeX の処理系である．システムのフォントを簡単に使用できるのでフォントにこだわる人は XeTeX も良い選択肢である．
-しかし，XeLaTeX で使用される日本語用のドキュメントクラスは，十分な禁則処理を実装しきれておらず，貢献者を募っている状況がある．</p>
-<p>pdfTeX は海外で最も使用人口の多い TeX 処理系である．
-もっとも古くから使用されていることから，ほとんどの TeX の資産が pdfTeX で使用できる．
-内部エンコーディングが Unicode ではないので，適当な処理をせずに直接 pdflatex を使って日本語のドキュメントをコンパイルしようとすると，
-失敗する．また pdfTeX の日本語用のドキュメントクラスも，十分な禁則処理を実装しきれておらず，貢献者を募っている状況がある．</p>
-<h2>ドキュメントクラス</h2>
-<p>日本語ドキュメントクラスは<code>jclasses</code>と<code>jsclasses</code>, <code>ltjsclasses</code>, <code>Bxjscls</code>がある．</p>
-<p><code>jsclasses</code>は<code>jclasses</code>の後継であり，日本でもっとも使用されているドキュメントクラスである．
-このドキュメントクラスは，pTeX と upTeX でコンパイルできる．</p>
-<p><code>ltjsclasses</code>は<code>jsclasses</code>を LuaTeX でコンパイルできるように改変したもので，
-フォント等の部分で LuaTeX の機能が発揮できるように改良されている．</p>
-<p><code>Bxjscls</code>は<code>jsclasses</code>を pTeX, upTeX, pdfTeX, XeTeX, LuaTeX などでコンパルできるように改変したものである． クロスプラットフォームなので，テンプレートを作ったりする分には便利である．</p>
-<p>とくに理由がなければ，<code>jsclasses</code>か<code>ltjsclasses</code>を使用する TeX 処理系によって選べばよい．
-ちなみに <code>jclasses</code> 系のクラスファイルと <code>jsclasses</code> 系では組版結果が大きく異なるので安易に書き換えてはいけない．</p>
-<h2>本文組版の際の書体について</h2>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th align="left">結果</th><th align="left">コマンド</th><th align="left">意味</th></tr></thead><tbody><tr><td align="left">立体</td><td align="left"><code>\textrm{立体}</code></td><td align="left">本文の通常の書体</td></tr><tr><td align="left">太字</td><td align="left"><code>\textbf{太字}</code></td><td align="left">見出し用の書体</td></tr><tr><td align="left">イタリック</td><td align="left"><code>\textit{イタリック}</code></td><td align="left">欧文の強調用の書体，書名用の書体</td></tr><tr><td align="left">斜体</td><td align="left"><code>\textsl{斜体}</code></td><td align="left">イタリックの代替</td></tr><tr><td align="left">スモールキャピタル</td><td align="left"><code>\textsc{スモールキャピタル}</code></td><td align="left"></td></tr><tr><td align="left">サンセリフ</td><td align="left"><code>\textsf{サンセリフ}</code></td><td align="left">見出し用の書体</td></tr><tr><td align="left">Typewriter</td><td align="left"><code>\texttt{Typewriter}</code></td><td align="left">計算機の入出力</td></tr><tr><td align="left">明朝体</td><td align="left"><code>\textmc{明朝体}</code></td><td align="left">本文の通常の書体</td></tr><tr><td align="left">ゴシック体</td><td align="left"><code>\textgt{ゴシック体}</code></td><td align="left">強調，見出し用の書体</td></tr></tbody></table>
-<h2>Beamer</h2>
-<p>通常の beamer ドキュメントクラスに<code>luatexja</code>パッケージを読み込むことで，日本語で Beamer ドキュメントを作ることができる．</p>
-<h2>参考文献</h2>
-<ul>
-<li><a href="https://web.archive.org/web/20190521132203/https://qiita.com/yyu/items/6404656f822ce14db935">TeX 処理系御伽話</a></li>
-<li><a href="https://hwb.ecc.u-tokyo.ac.jp/wp/applications-2/latex/font-2/">文字修飾とフォント</a></li>
-</ul><style>
-mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"] > svg a {
-  fill: blue;
-  stroke: blue;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][display="true"][width="full"] {
-  display: flex;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > g > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-.MathJax path {
-  stroke-width: 3;
-}
-</style>
+        <h1>
+          日本語
+          <span class="math math-inline"
+            ><mjx-container class="MathJax" jax="SVG"
+              ><svg
+                style="vertical-align: -0.488ex"
+                xmlns="http://www.w3.org/2000/svg"
+                width="5.788ex"
+                height="2.108ex"
+                role="img"
+                focusable="false"
+                viewBox="0 -716.3 2558.3 931.8"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <defs>
+                  <path
+                    id="MJX-1-TEX-N-4C"
+                    d="M128 622Q121 629 117 631T101 634T58 637H25V683H36Q48 680 182 680Q324 680 348 683H360V637H333Q273 637 258 635T233 622L232 342V129Q232 57 237 52Q243 47 313 47Q384 47 410 53Q470 70 498 110T536 221Q536 226 537 238T540 261T542 272T562 273H582V268Q580 265 568 137T554 5V0H25V46H58Q100 47 109 49T128 61V622Z"
+                  ></path>
+                  <path
+                    id="MJX-1-TEX-N-41"
+                    d="M255 0Q240 3 140 3Q48 3 39 0H32V46H47Q119 49 139 88Q140 91 192 245T295 553T348 708Q351 716 366 716H376Q396 715 400 709Q402 707 508 390L617 67Q624 54 636 51T687 46H717V0H708Q699 3 581 3Q458 3 437 0H427V46H440Q510 46 510 64Q510 66 486 138L462 209H229L209 150Q189 91 189 85Q189 72 209 59T259 46H264V0H255ZM447 255L345 557L244 256Q244 255 345 255H447Z"
+                  ></path>
+                  <path
+                    id="MJX-1-TEX-N-54"
+                    d="M36 443Q37 448 46 558T55 671V677H666V671Q667 666 676 556T685 443V437H645V443Q645 445 642 478T631 544T610 593Q593 614 555 625Q534 630 478 630H451H443Q417 630 414 618Q413 616 413 339V63Q420 53 439 50T528 46H558V0H545L361 3Q186 1 177 0H164V46H194Q264 46 283 49T309 63V339V550Q309 620 304 625T271 630H244H224Q154 630 119 601Q101 585 93 554T81 486T76 443V437H36V443Z"
+                  ></path>
+                  <path
+                    id="MJX-1-TEX-N-45"
+                    d="M128 619Q121 626 117 628T101 631T58 634H25V680H597V676Q599 670 611 560T625 444V440H585V444Q584 447 582 465Q578 500 570 526T553 571T528 601T498 619T457 629T411 633T353 634Q266 634 251 633T233 622Q233 622 233 621Q232 619 232 497V376H286Q359 378 377 385Q413 401 416 469Q416 471 416 473V493H456V213H416V233Q415 268 408 288T383 317T349 328T297 330Q290 330 286 330H232V196V114Q232 57 237 52Q243 47 289 47H340H391Q428 47 452 50T505 62T552 92T584 146Q594 172 599 200T607 247T612 270V273H652V270Q651 267 632 137T610 3V0H25V46H58Q100 47 109 49T128 61V619Z"
+                  ></path>
+                  <path
+                    id="MJX-1-TEX-N-58"
+                    d="M270 0Q252 3 141 3Q46 3 31 0H23V46H40Q129 50 161 88Q165 94 244 216T324 339Q324 341 235 480T143 622Q133 631 119 634T57 637H37V683H46Q64 680 172 680Q297 680 318 683H329V637H324Q307 637 286 632T263 621Q263 618 322 525T384 431Q385 431 437 511T489 593Q490 595 490 599Q490 611 477 622T436 637H428V683H437Q455 680 566 680Q661 680 676 683H684V637H667Q585 634 551 599Q548 596 478 491Q412 388 412 387Q412 385 514 225T620 62Q628 53 642 50T695 46H726V0H717Q699 3 591 3Q466 3 445 0H434V46H440Q454 46 476 51T499 64Q499 67 463 124T390 238L353 295L350 292Q348 290 343 283T331 265T312 236T286 195Q219 88 218 84Q218 70 234 59T272 46H280V0H270Z"
+                  ></path>
+                </defs>
+                <g
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  transform="matrix(1 0 0 -1 0 0)"
+                >
+                  <g data-mml-node="math">
+                    <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                      <g data-mml-node="mi">
+                        <use xlink:href="#MJX-1-TEX-N-4C"></use>
+                      </g>
+                      <g
+                        data-mml-node="mspace"
+                        transform="translate(625, 0)"
+                      ></g>
+                      <g data-mml-node="mpadded" transform="translate(300, 0)">
+                        <g transform="translate(0, 210)">
+                          <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                            <g data-mml-node="mstyle" transform="scale(0.707)">
+                              <g
+                                data-mml-node="TeXAtom"
+                                data-mjx-texclass="ORD"
+                              >
+                                <g data-mml-node="mi">
+                                  <use xlink:href="#MJX-1-TEX-N-41"></use>
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                      <g
+                        data-mml-node="mspace"
+                        transform="translate(830.3, 0)"
+                      ></g>
+                      <g data-mml-node="mi" transform="translate(660.3, 0)">
+                        <use xlink:href="#MJX-1-TEX-N-54"></use>
+                      </g>
+                      <g
+                        data-mml-node="mspace"
+                        transform="translate(1382.3, 0)"
+                      ></g>
+                      <g
+                        data-mml-node="mpadded"
+                        transform="translate(1242.3, 0)"
+                      >
+                        <g transform="translate(0, -215.5)">
+                          <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                            <g data-mml-node="mi">
+                              <use xlink:href="#MJX-1-TEX-N-45"></use>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                      <g
+                        data-mml-node="mspace"
+                        transform="translate(1923.3, 0)"
+                      ></g>
+                      <g data-mml-node="mi" transform="translate(1808.3, 0)">
+                        <use xlink:href="#MJX-1-TEX-N-58"></use>
+                      </g>
+                    </g>
+                  </g>
+                </g></svg></mjx-container
+          ></span>
+          作法
+        </h1>
+        <h2>TeX ディストリビューション</h2>
+        <ul>
+          <li>Win32TeX</li>
+          <li>TinyTeX</li>
+          <li>
+            TeXLive
+            <ul>
+              <li>minimal</li>
+              <li>basic</li>
+              <li>small</li>
+              <li>medium</li>
+              <li>full</li>
+            </ul>
+          </li>
+          <li>MacTeX</li>
+          <li>BasicTeX</li>
+          <li>Drag &#x26; Drop UpTeX</li>
+          <li>Tectonic</li>
+        </ul>
+        <h2>TeX エンジン</h2>
+        <p>
+          現在,日本語組版ができる TeX
+          処理系のうちメジャーなものは以下の通りである．
+        </p>
+        <ul>
+          <li>
+            pTeX, ε-pTeX (枯れた日本語対応の TeX
+            処理系．最も古くから存在する．1987 年誕生)
+          </li>
+          <li>
+            upTeX, ε-upTeX (内部エンコーディングが Unicode になっている TeX
+            処理系．2007 年誕生)
+          </li>
+          <li>
+            XeTeX (内部エンコーディングが Unicode
+            になっており，システムのフォントを直接利用する TeX 処理系．2004
+            年誕生)
+          </li>
+          <li>pdfTeX (枯れた TeX 処理系，直接 PDF を出力する．1997 年誕生)</li>
+          <li>
+            LuaTeX (pdftex の後継で内部エンコーディングが Unicode であり，Lua
+            でマクロがかける TeX 処理系，2007 年誕生)
+          </li>
+        </ul>
+        <p>
+          日本語で LaTeX の組版するときのおすすめ順は，LuaTeX, upTeX, pTeX,
+          XeTeX, pdfTeX である．
+        </p>
+        <p>
+          LuaTeX は現在 TeX コミュニティでフラグシップの TeX
+          処理系であり，日本語組版の開発も活発である． とくにフォントと PDF
+          関連の機能は LuaTeX
+          が最も充実している．したがってインターネット上にあるテンプレートを使用しない場合は
+          迷わず LuaTeX で十分なである．
+        </p>
+        <p>
+          upTeX は日本において pTeX に続いて使用人口の多いと推定される TeX
+          処理系である． pTeX のほぼ上位互換であり，Unicode を使用できる pTeX
+          であることから従来の pTeX
+          を対象に作られた資産の移行先として有望である． また，LuaTeX
+          は依然として他の TeX
+          処理系よりレンダリング速度が遅いので，巨大なドキュメントを頻繁にコンパイルするような環境では
+          upTeX を使うと開発が快適になる．しかし，内部エンコーディングが pTeX
+          と異なるので，いくつかのクラスファイルは upTeX に移行できない．
+        </p>
+        <p>
+          pTeX は日本において最も使用人口の多い TeX 処理系である．
+          もっとも古くから使用されていることから，ほとんどの TeX の資産が pTeX
+          で使用できる． 内部エンコーディングが Unicode
+          ではないため，直接レンダリングできない文字がある．
+          手っ取り早くドキュメントを作る場合は，pTeX
+          がもっともトラブルが少ない．
+        </p>
+        <p>
+          XeTeX は海外でよく使われている TeX
+          の処理系である．システムのフォントを簡単に使用できるのでフォントにこだわる人は
+          XeTeX も良い選択肢である． しかし，XeLaTeX
+          で使用される日本語用のドキュメントクラスは，十分な禁則処理を実装しきれておらず，貢献者を募っている状況がある．
+        </p>
+        <p>
+          pdfTeX は海外で最も使用人口の多い TeX 処理系である．
+          もっとも古くから使用されていることから，ほとんどの TeX の資産が pdfTeX
+          で使用できる． 内部エンコーディングが Unicode
+          ではないので，適当な処理をせずに直接 pdflatex
+          を使って日本語のドキュメントをコンパイルしようとすると，
+          失敗する．また pdfTeX
+          の日本語用のドキュメントクラスも，十分な禁則処理を実装しきれておらず，貢献者を募っている状況がある．
+        </p>
+        <h2>ドキュメントクラス</h2>
+        <p>
+          日本語ドキュメントクラスは<code>jclasses</code>と<code>jsclasses</code>,
+          <code>ltjsclasses</code>, <code>Bxjscls</code>がある．
+        </p>
+        <p>
+          <code>jsclasses</code
+          >は<code>jclasses</code>の後継であり，日本でもっとも使用されているドキュメントクラスである．
+          このドキュメントクラスは，pTeX と upTeX でコンパイルできる．
+        </p>
+        <p>
+          <code>ltjsclasses</code>は<code>jsclasses</code>を LuaTeX
+          でコンパイルできるように改変したもので， フォント等の部分で LuaTeX
+          の機能が発揮できるように改良されている．
+        </p>
+        <p>
+          <code>Bxjscls</code>は<code>jsclasses</code>を pTeX, upTeX, pdfTeX,
+          XeTeX, LuaTeX などでコンパルできるように改変したものである．
+          クロスプラットフォームなので，テンプレートを作ったりする分には便利である．
+        </p>
+        <p>
+          とくに理由がなければ，<code>jsclasses</code>か<code>ltjsclasses</code>を使用する
+          TeX 処理系によって選べばよい． ちなみに
+          <code>jclasses</code> 系のクラスファイルと
+          <code>jsclasses</code>
+          系では組版結果が大きく異なるので安易に書き換えてはいけない．
+        </p>
+        <h2>本文組版の際の書体について</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th align="left">結果</th>
+              <th align="left">コマンド</th>
+              <th align="left">意味</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align="left">立体</td>
+              <td align="left"><code>\textrm{立体}</code></td>
+              <td align="left">本文の通常の書体</td>
+            </tr>
+            <tr>
+              <td align="left">太字</td>
+              <td align="left"><code>\textbf{太字}</code></td>
+              <td align="left">見出し用の書体</td>
+            </tr>
+            <tr>
+              <td align="left">イタリック</td>
+              <td align="left"><code>\textit{イタリック}</code></td>
+              <td align="left">欧文の強調用の書体，書名用の書体</td>
+            </tr>
+            <tr>
+              <td align="left">斜体</td>
+              <td align="left"><code>\textsl{斜体}</code></td>
+              <td align="left">イタリックの代替</td>
+            </tr>
+            <tr>
+              <td align="left">スモールキャピタル</td>
+              <td align="left"><code>\textsc{スモールキャピタル}</code></td>
+              <td align="left"></td>
+            </tr>
+            <tr>
+              <td align="left">サンセリフ</td>
+              <td align="left"><code>\textsf{サンセリフ}</code></td>
+              <td align="left">見出し用の書体</td>
+            </tr>
+            <tr>
+              <td align="left">Typewriter</td>
+              <td align="left"><code>\texttt{Typewriter}</code></td>
+              <td align="left">計算機の入出力</td>
+            </tr>
+            <tr>
+              <td align="left">明朝体</td>
+              <td align="left"><code>\textmc{明朝体}</code></td>
+              <td align="left">本文の通常の書体</td>
+            </tr>
+            <tr>
+              <td align="left">ゴシック体</td>
+              <td align="left"><code>\textgt{ゴシック体}</code></td>
+              <td align="left">強調，見出し用の書体</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2>Beamer</h2>
+        <p>
+          通常の beamer
+          ドキュメントクラスに<code>luatexja</code>パッケージを読み込むことで，日本語で
+          Beamer ドキュメントを作ることができる．
+        </p>
+        <h2>参考文献</h2>
+        <ul>
+          <li>
+            <a
+              href="https://web.archive.org/web/20190521132203/https://qiita.com/yyu/items/6404656f822ce14db935"
+              >TeX 処理系御伽話</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://hwb.ecc.u-tokyo.ac.jp/wp/applications-2/latex/font-2/"
+              >文字修飾とフォント</a
+            >
+          </li>
+        </ul>
+        <style>
+          mjx-container[jax="SVG"] {
+            direction: ltr;
+          }
+
+          mjx-container[jax="SVG"] > svg {
+            overflow: visible;
+          }
+
+          mjx-container[jax="SVG"] > svg a {
+            fill: blue;
+            stroke: blue;
+          }
+
+          mjx-container[jax="SVG"][display="true"] {
+            display: block;
+            text-align: center;
+            margin: 1em 0;
+          }
+
+          mjx-container[jax="SVG"][display="true"][width="full"] {
+            display: flex;
+          }
+
+          mjx-container[jax="SVG"][justify="left"] {
+            text-align: left;
+          }
+
+          mjx-container[jax="SVG"][justify="right"] {
+            text-align: right;
+          }
+
+          g[data-mml-node="merror"] > g {
+            fill: red;
+            stroke: red;
+          }
+
+          g[data-mml-node="merror"] > rect[data-background] {
+            fill: yellow;
+            stroke: none;
+          }
+
+          g[data-mml-node="mtable"] > line[data-line] {
+            stroke-width: 70px;
+            fill: none;
+          }
+
+          g[data-mml-node="mtable"] > rect[data-frame] {
+            stroke-width: 70px;
+            fill: none;
+          }
+
+          g[data-mml-node="mtable"] > .mjx-dashed {
+            stroke-dasharray: 140;
+          }
+
+          g[data-mml-node="mtable"] > .mjx-dotted {
+            stroke-linecap: round;
+            stroke-dasharray: 0, 140;
+          }
+
+          g[data-mml-node="mtable"] > g > svg {
+            overflow: visible;
+          }
+
+          [jax="SVG"] mjx-tool {
+            display: inline-block;
+            position: relative;
+            width: 0;
+            height: 0;
+          }
+
+          [jax="SVG"] mjx-tool > mjx-tip {
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+
+          mjx-tool > mjx-tip {
+            display: inline-block;
+            padding: 0.2em;
+            border: 1px solid #888;
+            font-size: 70%;
+            background-color: #f8f8f8;
+            color: black;
+            box-shadow: 2px 2px 5px #aaaaaa;
+          }
+
+          g[data-mml-node="maction"][data-toggle] {
+            cursor: pointer;
+          }
+
+          mjx-status {
+            display: block;
+            position: fixed;
+            left: 1em;
+            bottom: 1em;
+            min-width: 25%;
+            padding: 0.2em 0.4em;
+            border: 1px solid #888;
+            font-size: 90%;
+            background-color: #f8f8f8;
+            color: black;
+          }
+
+          foreignObject[data-mjx-xml] {
+            font-family: initial;
+            line-height: normal;
+            overflow: visible;
+          }
+
+          .MathJax path {
+            stroke-width: 3;
+          }
+        </style>
       </article>
-      
+
       <aside>
-        
-        
-        
-        
         <h2>Articles</h2>
         <ul>
-        
-          <li><a href="/knowledge/cont/">Continuations in Programming Language</a></li>
-        
+          <li>
+            <a href="/knowledge/cont/">Continuations in Programming Language</a>
+          </li>
+
           <li><a href="/knowledge/guix_ja/">GUIX利用ガイド</a></li>
-        
+
           <li><a href="/knowledge/latex_ja/">日本語 LaTeX 作法</a></li>
-        
+
           <li><a href="/knowledge/prolog_snippets/">Prolog Snippets</a></li>
-        
+
           <li><a href="/knowledge/tools/">Toolbox</a></li>
-        
+
           <li><a href="/knowledge/userscript/">Userscripts</a></li>
-        
+
           <li><a href="/profile/">Profile</a></li>
-        
         </ul>
       </aside>
-      
     </main>
     <footer>
       <p>Copyright (c) 2020 TANIGUCHI Masaya All Rights Reserved.</p>
-      <p>Please tell me on <a href="https://github.com/nzt/docs">GitHub</a> if you found any typos and misstatements.</p>
+      <p>
+        Please tell me on <a href="https://github.com/nzt/docs">GitHub</a> if
+        you found any typos and misstatements.
+      </p>
     </footer>
   </body>
 </html>

@@ -1,29 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Home - www.docs.casa</title>
     <link rel="icon" href="data:," />
-    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css" onload="this.rel='stylesheet'"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Shippori+Mincho+B1:wght@400;700&display=swap" onload="this.rel='stylesheet'">
+    <link
+      rel="preload"
+      as="style"
+      href="https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css"
+      onload="this.rel='stylesheet'"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Shippori+Mincho+B1:wght@400;700&display=swap"
+      onload="this.rel='stylesheet'"
+    />
     <style>
       body {
-        font-family: 'Shippori Mincho B1', serif;
+        font-family: "Shippori Mincho B1", serif;
         width: min(900px, 100%);
         margin: 0 auto;
       }
-      @media(max-width: 900px) {
+      @media (max-width: 900px) {
         body {
           padding: 0 10px;
         }
       }
-      @media(min-width: 376px) {
+      @media (min-width: 376px) {
         main {
           display: grid;
           grid-template-columns: 2.4142fr 1fr;
-        } 
+        }
         article {
           padding-right: 10px;
         }
@@ -32,8 +42,9 @@
           padding-left: 10px;
         }
       }
-      pre, code {
-        font-family: 'Inconsolate', monospace;
+      pre,
+      code {
+        font-family: "Inconsolate", monospace;
       }
       pre > code {
         overflow: auto;
@@ -51,19 +62,25 @@
         display: flex;
         list-style: none;
       }
-      nav ul li:before{
+      nav ul li:before {
         content: " [ ";
       }
       nav ul li:after {
         content: " ] ";
       }
-      h1, h2, h3, h4, h5 {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
         margin: 1rem 0;
       }
       thead {
         border-bottom: 2px solid black;
       }
-      table, th, td {
+      table,
+      th,
+      td {
         border-collapse: collapse;
         border: 1px solid black;
       }
@@ -71,9 +88,7 @@
   </head>
   <body>
     <header>
-      <h1>
-        計算機と文字
-      </h1>
+      <h1>計算機と文字</h1>
       <nav>
         <ul>
           <li><a href="/">HOME</a></li>
@@ -83,37 +98,43 @@
     </header>
     <main>
       <article>
-      <h1>Welcome to TANIGUCHI Masaya's homepage</h1>
-<h2>Knowledge</h2>
-<ul>
-<li>
-<p><a href="/knowledge/cont/">Continuations in Programming Language</a></p>
-</li>
-<li>
-<p><a href="/knowledge/guix_ja/">GUIX利用ガイド</a></p>
-</li>
-<li>
-<p><a href="/knowledge/latex_ja/">日本語 LaTeX 作法</a></p>
-</li>
-<li>
-<p><a href="/knowledge/prolog_snippets/">Prolog Snippets</a></p>
-</li>
-<li>
-<p><a href="/knowledge/tools/">Toolbox</a></p>
-</li>
-<li>
-<p><a href="/knowledge/userscript/">Userscripts</a></p>
-</li>
-<li>
-<p><a href="/profile/">Profile</a></p>
-</li>
-</ul>
+        <h1>Welcome to TANIGUCHI Masaya's homepage</h1>
+        <h2>Knowledge</h2>
+        <ul>
+          <li>
+            <p>
+              <a href="/knowledge/cont/"
+                >Continuations in Programming Language</a
+              >
+            </p>
+          </li>
+          <li>
+            <p><a href="/knowledge/guix_ja/">GUIX利用ガイド</a></p>
+          </li>
+          <li>
+            <p><a href="/knowledge/latex_ja/">日本語 LaTeX 作法</a></p>
+          </li>
+          <li>
+            <p><a href="/knowledge/prolog_snippets/">Prolog Snippets</a></p>
+          </li>
+          <li>
+            <p><a href="/knowledge/tools/">Toolbox</a></p>
+          </li>
+          <li>
+            <p><a href="/knowledge/userscript/">Userscripts</a></p>
+          </li>
+          <li>
+            <p><a href="/profile/">Profile</a></p>
+          </li>
+        </ul>
       </article>
-      
     </main>
     <footer>
       <p>Copyright (c) 2020 TANIGUCHI Masaya All Rights Reserved.</p>
-      <p>Please tell me on <a href="https://github.com/nzt/docs">GitHub</a> if you found any typos and misstatements.</p>
+      <p>
+        Please tell me on <a href="https://github.com/nzt/docs">GitHub</a> if
+        you found any typos and misstatements.
+      </p>
     </footer>
   </body>
 </html>
