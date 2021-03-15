@@ -8,7 +8,6 @@
     <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css" onload="this.rel='stylesheet'"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Shippori+Mincho+B1:wght@400;700&display=swap" onload="this.rel='stylesheet'">
-    
     <style>
       body {
         font-family: 'Shippori Mincho B1', serif;
@@ -93,26 +92,26 @@ OS の種類: 64-bit
 メモリ: 15.5 GiB of RAM
 </code></pre>
 <h2>インストール</h2>
-<p>GUIXのインストールには幾つかの方法があるが、標準的なLinux環境ではシェルインストーラスクリプトを使用するのが便利である。<br>
-このインストーラはダウンロードしたパッケージ郡をPGPで検査するので、実行前にGUIXの開発者のPGP公開鍵をインポートしておく必要がある。<br>
+<p>GUIXのインストールには幾つかの方法があるが、標準的なLinux環境ではシェルインストーラスクリプトを使用するのが便利である。
+このインストーラはダウンロードしたパッケージ郡をPGPで検査するので、実行前にGUIXの開発者のPGP公開鍵をインポートしておく必要がある。
 なお、検証は管理者権限で行われるのでrootユーザのキーチェインにPGP公開鍵を保存しておく。</p>
 <pre><code class="language-shell">$ wget -qO - 'https://sv.gnu.org/people/viewgpg.php?user_id=15145' | sudo gpg --import -
 </code></pre>
 <p>管理者権限でインストーラーを実行させる。これは<code>/gnu</code>をパッケージの保存場所に使ったり、<code>/etc</code>に設定ファイルを保存することから必要な権限である。</p>
 <pre><code class="language-shell">$ wget -qO - 'https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh' | sudo sh -
 </code></pre>
-<p>これでLinux環境に各種ファイルが設置され、GUIX用のユーザとデーモンが作成される。<br>
+<p>これでLinux環境に各種ファイルが設置され、GUIX用のユーザとデーモンが作成される。
 最後に<code>~/.bashrc</code>や<code>~/.zshrc</code>に以下を追記して再読み込みする。</p>
-<pre><code class="language-shell">echo 'source $HOME/.guix-profile/etc/profile' &gt;&gt; ~/.bashrc
+<pre><code class="language-shell">echo 'source $HOME/.guix-profile/etc/profile' >> ~/.bashrc
 </code></pre>
 <p>なお、<code>guile: warning failed to install locale</code>と表示された場合は、<a href="#troubleshooting">下記</a>を参考に対応する。</p>
 <h2>チャンネル</h2>
-<p>GUIXの公式のリポジトリはCIサーバがソースコードをダウンロードしビルドできるものしか登録できないので、<br>
-各ソフトウェア開発チームが配布している公式のビルド済みバイナリは登録できない。そこで筆者も自分用にパッケージを配布する<a href="https://github.com/nzt/guix-vanilla">チャンネル</a>を用意した。<br>
+<p>GUIXの公式のリポジトリはCIサーバがソースコードをダウンロードしビルドできるものしか登録できないので、
+各ソフトウェア開発チームが配布している公式のビルド済みバイナリは登録できない。そこで筆者も自分用にパッケージを配布する<a href="https://github.com/nzt/guix-vanilla">チャンネル</a>を用意した。
 このチャンネルはx86_64のLinux環境でしかサポートしておらずRUNPATHの設定が怪しいのでGUIX SDでは動作しない恐れがあることに注意して欲しい。このチャンネルは<code>~/.config/guix/channels/</code>に以下を追記して<code>guix pull</code>を実行することで有効化される。</p>
 <pre><code class="language-scheme">(cons* (channel
         (name 'vanilla)
-        (url &quot;https://github.com/nzt/guix-vanilla&quot;))
+        (url "https://github.com/nzt/guix-vanilla"))
        %default-channels)
 </code></pre>
 <h2><a name="troubleshooting">トラブルシューティング</a></h2>
@@ -120,23 +119,23 @@ OS の種類: 64-bit
 <ol>
 <li>
 <p>コマンド<code>guix</code>を実行すると<code>guile: warning: failed to install locale</code>と表示される。</p>
-<p>上記のようなエラーが出るときは、guixで<code>glibc-utf8-locales</code>ではなく <strong><code>glibc-locales</code>をインストール</strong> し、 <strong>環境変数<code>GUIX_LOCPATH</code>を設定</strong>する。<br>
-これは、<code>glibc-utf8-locales</code>にはUTF-8の全てのロケールがインストールされるのではなく、欧米圏の限られたロケールしかインストールされないことから、<br>
-<code>glibc-locales</code>をインストールする必要がある。しかし、警告と同時に表示されるヒントでは、<br>
+<p>上記のようなエラーが出るときは、guixで<code>glibc-utf8-locales</code>ではなく <strong><code>glibc-locales</code>をインストール</strong> し、 <strong>環境変数<code>GUIX_LOCPATH</code>を設定</strong>する。
+これは、<code>glibc-utf8-locales</code>にはUTF-8の全てのロケールがインストールされるのではなく、欧米圏の限られたロケールしかインストールされないことから、
+<code>glibc-locales</code>をインストールする必要がある。しかし、警告と同時に表示されるヒントでは、
 <code>glibc-utf8-locales</code>をインストールするよう促されているため、日本語環境を使用しているユーザーは注意が必要である。</p>
 <pre><code class="language-shell">$ guix install glibc-locales
-$ echo 'export GUIX_LOCPATH=&quot;$HOME/.guix-profile/lib/locale&quot;' &gt;&gt; $HOME/.bashrc
+$ echo 'export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"' >> $HOME/.bashrc
 $ source $HOME/.bashrc
 </code></pre>
 </li>
 <li>
 <p>コマンド<code>guix isntall</code>を実行すると<code>substitute: /gnu/store/29jhbbg1hf557x8j53f9sxd9imlmf02a-bash-minimal-5.0.7/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_US.utf8)</code>と表示される。</p>
-<p>上記のエラーは、guixがパッケージをインストールする際に一時的に管理者権限に昇格してパッケージをダウンロードすることが原因である。<br>
-このとき、管理者権限にGUIX用のロケールが設定されていない場合GUIXは管理者rootユーザに対して上記のエラーを出力する。そのエラーが<br>
+<p>上記のエラーは、guixがパッケージをインストールする際に一時的に管理者権限に昇格してパッケージをダウンロードすることが原因である。
+このとき、管理者権限にGUIX用のロケールが設定されていない場合GUIXは管理者rootユーザに対して上記のエラーを出力する。そのエラーが
 伝搬し一般ユーザである実行ユーザにも表示されている。従って、<strong>rootユーザに対してロケールをインストール</strong>すれば、この問題は解決する。</p>
 <pre><code class="language-shell">$ sudo -i #rootユーザになる
 % guix install glibc-locales
-% echo 'export GUIX_LOCPATH=&quot;$HOME/.guix-profile/lib/locale&quot;' &gt;&gt; $HOME/.bashrc
+% echo 'export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"' >> $HOME/.bashrc
 % source $HOME/.bashrc
 </code></pre>
 </li>
@@ -149,7 +148,6 @@ $ fc-cache -fv
 </code></pre>
 </li>
 </ol>
-
       </article>
       
       <aside>
