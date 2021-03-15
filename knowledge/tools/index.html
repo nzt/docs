@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Toolbox - www.docs.casa</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Shippori+Mincho+B1:wght@400;700&display=swap">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+    <style>
+      body {
+        font-family: 'Shippori Mincho B1', serif;
+        width: min(900px, 100%);
+        margin: 0 auto;
+      }
+      @media(max-width: 900px) {
+        body {
+          padding: 0 10px;
+        }
+      }
+      @media(min-width: 376px) {
+        main {
+          display: grid;
+          grid-template-columns: 2.4142fr 1fr;
+        } 
+        article {
+          padding-right: 10px;
+        }
+        aside {
+          border-left: 1px solid black;
+          padding-left: 10px;
+        }
+      }
+      pre, code {
+        font-family: 'Inconsolate', monospace;
+      }
+      pre > code {
+        overflow: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      header {
+        border-bottom: solid 2px black;
+      }
+      footer {
+        border-top: solid 2px black;
+      }
+      nav ul {
+        padding: 0;
+        display: flex;
+        list-style: none;
+      }
+      nav ul li:before{
+        content: " [ ";
+      }
+      nav ul li:after {
+        content: " ] ";
+      }
+      h1, h2, h3, h4, h5 {
+        margin: 1rem 0;
+      }
+      thead {
+        border-bottom: 2px solid black;
+      }
+      table, th, td {
+        border-collapse: collapse;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        計算機と文字
+      </h1>
+      <nav>
+        <ul>
+          <li><a href="/">HOME</a></li>
+          <li><a href="/profile/">PROFILE</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <article>
+      <h1>Toolbox</h1>
+<p>A list of softwares for my research.</p>
+<ul>
+<li>macOS Big Sur - An operating system for Macintosh</li>
+<li>Ubuntu 20.04 - A Linux distribution</li>
+<li>GNU Emacs 27.1 - An extensible, customizable, self-documenting, real-time display editor</li>
+<li>SageMath 9.3 - An open-source mathematical software system</li>
+<li>Isabelle/HOL 2020 - A proof assistant</li>
+<li>ACL2 8.2 - A theorem prover</li>
+<li>\(\mathrm{\TeX}\)Live 2020 - A TeX Distribution</li>
+<li>Steel Bank Common Lisp (SBCL) 2.0 - A Common Lisp compiler</li>
+<li>Racket 7.8 - A general-purpose, multi-paradigm programming language based on the Scheme dialect of Lisp</li>
+<li>Clojure 10.x - LISP for JVM</li>
+<li>SWI-Prolog 8.2 - A free Prolog environment</li>
+<li><a href="https://gist.githack.com/tani/e148eac91f7ef3633fa7469eba815a51/raw/tableaux.html">MyTableaux</a> - Online Tableaux based prover</li>
+</ul>
+
+      </article>
+      
+      <aside>
+        
+        
+        
+        
+        <h2>Articles</h2>
+        <ul>
+        
+          <li><a href="/knowledge/cont/">Continuations in Programming Language</a></li>
+        
+          <li><a href="/knowledge/guix_ja/">GUIX利用ガイド</a></li>
+        
+          <li><a href="/knowledge/latex_ja/">日本語 LaTeX 作法</a></li>
+        
+          <li><a href="/knowledge/prolog_snippets/">Prolog Snippets</a></li>
+        
+          <li><a href="/knowledge/tools/">Toolbox</a></li>
+        
+          <li><a href="/knowledge/userscript/">Userscripts</a></li>
+        
+          <li><a href="/profile/">Profile</a></li>
+        
+        </ul>
+      </aside>
+      
+    </main>
+    <footer>
+      <p>Copyright (c) 2020 TANIGUCHI Masaya All Rights Reserved.</p>
+      <p>Please tell me on <a href="https://github.com/nzt/docs">GitHub</a> if you found any typos and misstatements.</p>
+    </footer>
+  </body>
+</html>

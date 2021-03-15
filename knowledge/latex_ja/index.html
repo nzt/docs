@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>日本語 LaTeX 作法 - www.docs.casa</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Shippori+Mincho+B1:wght@400;700&display=swap">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+    <style>
+      body {
+        font-family: 'Shippori Mincho B1', serif;
+        width: min(900px, 100%);
+        margin: 0 auto;
+      }
+      @media(max-width: 900px) {
+        body {
+          padding: 0 10px;
+        }
+      }
+      @media(min-width: 376px) {
+        main {
+          display: grid;
+          grid-template-columns: 2.4142fr 1fr;
+        } 
+        article {
+          padding-right: 10px;
+        }
+        aside {
+          border-left: 1px solid black;
+          padding-left: 10px;
+        }
+      }
+      pre, code {
+        font-family: 'Inconsolate', monospace;
+      }
+      pre > code {
+        overflow: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      header {
+        border-bottom: solid 2px black;
+      }
+      footer {
+        border-top: solid 2px black;
+      }
+      nav ul {
+        padding: 0;
+        display: flex;
+        list-style: none;
+      }
+      nav ul li:before{
+        content: " [ ";
+      }
+      nav ul li:after {
+        content: " ] ";
+      }
+      h1, h2, h3, h4, h5 {
+        margin: 1rem 0;
+      }
+      thead {
+        border-bottom: 2px solid black;
+      }
+      table, th, td {
+        border-collapse: collapse;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        計算機と文字
+      </h1>
+      <nav>
+        <ul>
+          <li><a href="/">HOME</a></li>
+          <li><a href="/profile/">PROFILE</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <article>
+      <h1>日本語 \(\mathrm{\LaTeX}\) 作法</h1>
+<h2>TeX ディストリビューション</h2>
+<ul>
+<li>Win32TeX</li>
+<li>TinyTeX</li>
+<li>TeXLive
+<ul>
+<li>minimal</li>
+<li>basic</li>
+<li>small</li>
+<li>medium</li>
+<li>full</li>
+</ul>
+</li>
+<li>MacTeX</li>
+<li>BasicTeX</li>
+<li>Drag &amp; Drop UpTeX</li>
+<li>Tectonic</li>
+</ul>
+<h2>TeX エンジン</h2>
+<p>現在,日本語組版ができる TeX 処理系のうちメジャーなものは以下の通りである．</p>
+<ul>
+<li>pTeX, ε-pTeX (枯れた日本語対応の TeX 処理系．最も古くから存在する．1987 年誕生)</li>
+<li>upTeX, ε-upTeX (内部エンコーディングが Unicode になっている TeX 処理系．2007 年誕生)</li>
+<li>XeTeX (内部エンコーディングが Unicode になっており，システムのフォントを直接利用する TeX 処理系．2004 年誕生)</li>
+<li>pdfTeX (枯れた TeX 処理系，直接 PDF を出力する．1997 年誕生)</li>
+<li>LuaTeX (pdftex の後継で内部エンコーディングが Unicode であり，Lua でマクロがかける TeX 処理系，2007 年誕生)</li>
+</ul>
+<p>日本語で LaTeX の組版するときのおすすめ順は，LuaTeX, upTeX, pTeX, XeTeX, pdfTeX である．</p>
+<p>LuaTeX は現在 TeX コミュニティでフラグシップの TeX 処理系であり，日本語組版の開発も活発である．<br>
+とくにフォントと PDF 関連の機能は LuaTeX が最も充実している．したがってインターネット上にあるテンプレートを使用しない場合は<br>
+迷わず LuaTeX で十分なである．</p>
+<p>upTeX は日本において pTeX に続いて使用人口の多いと推定される TeX 処理系である．<br>
+pTeX のほぼ上位互換であり，Unicode を使用できる pTeX であることから従来の pTeX を対象に作られた資産の移行先として有望である．<br>
+また，LuaTeX は依然として他の TeX 処理系よりレンダリング速度が遅いので，巨大なドキュメントを頻繁にコンパイルするような環境では<br>
+upTeX を使うと開発が快適になる．しかし，内部エンコーディングが pTeX と異なるので，いくつかのクラスファイルは<br>
+upTeX に移行できない．</p>
+<p>pTeX は日本において最も使用人口の多い TeX 処理系である．<br>
+もっとも古くから使用されていることから，ほとんどの TeX の資産が pTeX で使用できる．<br>
+内部エンコーディングが Unicode ではないため，直接レンダリングできない文字がある．<br>
+手っ取り早くドキュメントを作る場合は，pTeX がもっともトラブルが少ない．</p>
+<p>XeTeX は海外でよく使われている TeX の処理系である．システムのフォントを簡単に使用できるのでフォントにこだわる人は XeTeX も良い選択肢である．<br>
+しかし，XeLaTeX で使用される日本語用のドキュメントクラスは，十分な禁則処理を実装しきれておらず，貢献者を募っている状況がある．</p>
+<p>pdfTeX は海外で最も使用人口の多い TeX 処理系である．<br>
+もっとも古くから使用されていることから，ほとんどの TeX の資産が pdfTeX で使用できる．<br>
+内部エンコーディングが Unicode ではないので，適当な処理をせずに直接 pdflatex を使って日本語のドキュメントをコンパイルしようとすると，<br>
+失敗する．また pdfTeX の日本語用のドキュメントクラスも，十分な禁則処理を実装しきれておらず，貢献者を募っている状況がある．</p>
+<h2>ドキュメントクラス</h2>
+<p>日本語ドキュメントクラスは<code>jclasses</code>と<code>jsclasses</code>, <code>ltjsclasses</code>, <code>Bxjscls</code>がある．</p>
+<p><code>jsclasses</code>は<code>jclasses</code>の後継であり，日本でもっとも使用されているドキュメントクラスである．<br>
+このドキュメントクラスは，pTeX と upTeX でコンパイルできる．</p>
+<p><code>ltjsclasses</code>は<code>jsclasses</code>を LuaTeX でコンパイルできるように改変したもので，<br>
+フォント等の部分で LuaTeX の機能が発揮できるように改良されている．</p>
+<p><code>Bxjscls</code>は<code>jsclasses</code>を pTeX, upTeX, pdfTeX, XeTeX, LuaTeX などでコンパルできるように改変したものである． クロスプラットフォームなので，テンプレートを作ったりする分には便利である．</p>
+<p>とくに理由がなければ，<code>jsclasses</code>か<code>ltjsclasses</code>を使用する TeX 処理系によって選べばよい．<br>
+ちなみに <code>jclasses</code> 系のクラスファイルと <code>jsclasses</code> 系では組版結果が大きく異なるので安易に書き換えてはいけない．</p>
+<h2>本文組版の際の書体について</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">結果</th>
+<th style="text-align:left">コマンド</th>
+<th style="text-align:left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">立体</td>
+<td style="text-align:left"><code>\textrm{立体}</code></td>
+<td style="text-align:left">本文の通常の書体</td>
+</tr>
+<tr>
+<td style="text-align:left">太字</td>
+<td style="text-align:left"><code>\textbf{太字}</code></td>
+<td style="text-align:left">見出し用の書体</td>
+</tr>
+<tr>
+<td style="text-align:left">イタリック</td>
+<td style="text-align:left"><code>\textit{イタリック}</code></td>
+<td style="text-align:left">欧文の強調用の書体，書名用の書体</td>
+</tr>
+<tr>
+<td style="text-align:left">斜体</td>
+<td style="text-align:left"><code>\textsl{斜体}</code></td>
+<td style="text-align:left">イタリックの代替</td>
+</tr>
+<tr>
+<td style="text-align:left">スモールキャピタル</td>
+<td style="text-align:left"><code>\textsc{スモールキャピタル}</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">サンセリフ</td>
+<td style="text-align:left"><code>\textsf{サンセリフ}</code></td>
+<td style="text-align:left">見出し用の書体</td>
+</tr>
+<tr>
+<td style="text-align:left">Typewriter</td>
+<td style="text-align:left"><code>\texttt{Typewriter}</code></td>
+<td style="text-align:left">計算機の入出力</td>
+</tr>
+<tr>
+<td style="text-align:left">明朝体</td>
+<td style="text-align:left"><code>\textmc{明朝体}</code></td>
+<td style="text-align:left">本文の通常の書体</td>
+</tr>
+<tr>
+<td style="text-align:left">ゴシック体</td>
+<td style="text-align:left"><code>\textgt{ゴシック体}</code></td>
+<td style="text-align:left">強調，見出し用の書体</td>
+</tr>
+</tbody>
+</table>
+<h2>Beamer</h2>
+<p>通常の beamer ドキュメントクラスに<code>luatexja</code>パッケージを読み込むことで，日本語で Beamer ドキュメントを作ることができる．</p>
+<h2>参考文献</h2>
+<ul>
+<li><a href="https://web.archive.org/web/20190521132203/https://qiita.com/yyu/items/6404656f822ce14db935">TeX 処理系御伽話</a></li>
+<li><a href="https://hwb.ecc.u-tokyo.ac.jp/wp/applications-2/latex/font-2/">文字修飾とフォント</a></li>
+</ul>
+
+      </article>
+      
+      <aside>
+        
+        
+        
+        
+        <h2>Articles</h2>
+        <ul>
+        
+          <li><a href="/knowledge/cont/">Continuations in Programming Language</a></li>
+        
+          <li><a href="/knowledge/guix_ja/">GUIX利用ガイド</a></li>
+        
+          <li><a href="/knowledge/latex_ja/">日本語 LaTeX 作法</a></li>
+        
+          <li><a href="/knowledge/prolog_snippets/">Prolog Snippets</a></li>
+        
+          <li><a href="/knowledge/tools/">Toolbox</a></li>
+        
+          <li><a href="/knowledge/userscript/">Userscripts</a></li>
+        
+          <li><a href="/profile/">Profile</a></li>
+        
+        </ul>
+      </aside>
+      
+    </main>
+    <footer>
+      <p>Copyright (c) 2020 TANIGUCHI Masaya All Rights Reserved.</p>
+      <p>Please tell me on <a href="https://github.com/nzt/docs">GitHub</a> if you found any typos and misstatements.</p>
+    </footer>
+  </body>
+</html>

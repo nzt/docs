@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GUIX利用ガイド - www.docs.casa</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Shippori+Mincho+B1:wght@400;700&display=swap">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+    <style>
+      body {
+        font-family: 'Shippori Mincho B1', serif;
+        width: min(900px, 100%);
+        margin: 0 auto;
+      }
+      @media(max-width: 900px) {
+        body {
+          padding: 0 10px;
+        }
+      }
+      @media(min-width: 376px) {
+        main {
+          display: grid;
+          grid-template-columns: 2.4142fr 1fr;
+        } 
+        article {
+          padding-right: 10px;
+        }
+        aside {
+          border-left: 1px solid black;
+          padding-left: 10px;
+        }
+      }
+      pre, code {
+        font-family: 'Inconsolate', monospace;
+      }
+      pre > code {
+        overflow: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      header {
+        border-bottom: solid 2px black;
+      }
+      footer {
+        border-top: solid 2px black;
+      }
+      nav ul {
+        padding: 0;
+        display: flex;
+        list-style: none;
+      }
+      nav ul li:before{
+        content: " [ ";
+      }
+      nav ul li:after {
+        content: " ] ";
+      }
+      h1, h2, h3, h4, h5 {
+        margin: 1rem 0;
+      }
+      thead {
+        border-bottom: 2px solid black;
+      }
+      table, th, td {
+        border-collapse: collapse;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        計算機と文字
+      </h1>
+      <nav>
+        <ul>
+          <li><a href="/">HOME</a></li>
+          <li><a href="/profile/">PROFILE</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <article>
+      <h1>GUIX利用ガイド</h1>
+<h2>検証環境</h2>
+<pre><code>Operating System: Kubuntu 20.04
+カーネルバージョン: 5.4.0-29-generic
+OS の種類: 64-bit
+プロセッサ: 4 × Intel® Core™ i5-4278U CPU @ 2.60GHz
+メモリ: 15.5 GiB of RAM
+</code></pre>
+<h2>インストール</h2>
+<p>GUIXのインストールには幾つかの方法があるが、標準的なLinux環境ではシェルインストーラスクリプトを使用するのが便利である。<br>
+このインストーラはダウンロードしたパッケージ郡をPGPで検査するので、実行前にGUIXの開発者のPGP公開鍵をインポートしておく必要がある。<br>
+なお、検証は管理者権限で行われるのでrootユーザのキーチェインにPGP公開鍵を保存しておく。</p>
+<pre><code class="language-shell">$ wget -qO - 'https://sv.gnu.org/people/viewgpg.php?user_id=15145' | sudo gpg --import -
+</code></pre>
+<p>管理者権限でインストーラーを実行させる。これは<code>/gnu</code>をパッケージの保存場所に使ったり、<code>/etc</code>に設定ファイルを保存することから必要な権限である。</p>
+<pre><code class="language-shell">$ wget -qO - 'https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh' | sudo sh -
+</code></pre>
+<p>これでLinux環境に各種ファイルが設置され、GUIX用のユーザとデーモンが作成される。<br>
+最後に<code>~/.bashrc</code>や<code>~/.zshrc</code>に以下を追記して再読み込みする。</p>
+<pre><code class="language-shell">echo 'source $HOME/.guix-profile/etc/profile' &gt;&gt; ~/.bashrc
+</code></pre>
+<p>なお、<code>guile: warning failed to install locale</code>と表示された場合は、<a href="#troubleshooting">下記</a>を参考に対応する。</p>
+<h2>チャンネル</h2>
+<p>GUIXの公式のリポジトリはCIサーバがソースコードをダウンロードしビルドできるものしか登録できないので、<br>
+各ソフトウェア開発チームが配布している公式のビルド済みバイナリは登録できない。そこで筆者も自分用にパッケージを配布する<a href="https://github.com/nzt/guix-vanilla">チャンネル</a>を用意した。<br>
+このチャンネルはx86_64のLinux環境でしかサポートしておらずRUNPATHの設定が怪しいのでGUIX SDでは動作しない恐れがあることに注意して欲しい。このチャンネルは<code>~/.config/guix/channels/</code>に以下を追記して<code>guix pull</code>を実行することで有効化される。</p>
+<pre><code class="language-scheme">(cons* (channel
+        (name 'vanilla)
+        (url &quot;https://github.com/nzt/guix-vanilla&quot;))
+       %default-channels)
+</code></pre>
+<h2><a name="troubleshooting">トラブルシューティング</a></h2>
+<p>以下では日本語環境でGUIXを使用する際のよくある問題とその解決方法を示す。</p>
+<ol>
+<li>
+<p>コマンド<code>guix</code>を実行すると<code>guile: warning: failed to install locale</code>と表示される。</p>
+<p>上記のようなエラーが出るときは、guixで<code>glibc-utf8-locales</code>ではなく <strong><code>glibc-locales</code>をインストール</strong> し、 <strong>環境変数<code>GUIX_LOCPATH</code>を設定</strong>する。<br>
+これは、<code>glibc-utf8-locales</code>にはUTF-8の全てのロケールがインストールされるのではなく、欧米圏の限られたロケールしかインストールされないことから、<br>
+<code>glibc-locales</code>をインストールする必要がある。しかし、警告と同時に表示されるヒントでは、<br>
+<code>glibc-utf8-locales</code>をインストールするよう促されているため、日本語環境を使用しているユーザーは注意が必要である。</p>
+<pre><code class="language-shell">$ guix install glibc-locales
+$ echo 'export GUIX_LOCPATH=&quot;$HOME/.guix-profile/lib/locale&quot;' &gt;&gt; $HOME/.bashrc
+$ source $HOME/.bashrc
+</code></pre>
+</li>
+<li>
+<p>コマンド<code>guix isntall</code>を実行すると<code>substitute: /gnu/store/29jhbbg1hf557x8j53f9sxd9imlmf02a-bash-minimal-5.0.7/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_US.utf8)</code>と表示される。</p>
+<p>上記のエラーは、guixがパッケージをインストールする際に一時的に管理者権限に昇格してパッケージをダウンロードすることが原因である。<br>
+このとき、管理者権限にGUIX用のロケールが設定されていない場合GUIXは管理者rootユーザに対して上記のエラーを出力する。そのエラーが<br>
+伝搬し一般ユーザである実行ユーザにも表示されている。従って、<strong>rootユーザに対してロケールをインストール</strong>すれば、この問題は解決する。</p>
+<pre><code class="language-shell">$ sudo -i #rootユーザになる
+% guix install glibc-locales
+% echo 'export GUIX_LOCPATH=&quot;$HOME/.guix-profile/lib/locale&quot;' &gt;&gt; $HOME/.bashrc
+% source $HOME/.bashrc
+</code></pre>
+</li>
+<li>
+<p>GUIのアプリケーションで文字化けする。</p>
+<p>GUIX内でのフォントのキャッシュが更新されていないことが原因です。したがって <strong><code>fontcnofig</code>と適当なフォントをインストール</strong> して<strong>フォントのキャッシュを更新</strong>することで解決します。</p>
+<pre><code class="language-shell">$ guix instlal fontcnofig font-google-noto
+$ source ~/.guix-profile/etc/profile
+$ fc-cache -fv
+</code></pre>
+</li>
+</ol>
+
+      </article>
+      
+      <aside>
+        
+        
+        
+        
+        <h2>Articles</h2>
+        <ul>
+        
+          <li><a href="/knowledge/cont/">Continuations in Programming Language</a></li>
+        
+          <li><a href="/knowledge/guix_ja/">GUIX利用ガイド</a></li>
+        
+          <li><a href="/knowledge/latex_ja/">日本語 LaTeX 作法</a></li>
+        
+          <li><a href="/knowledge/prolog_snippets/">Prolog Snippets</a></li>
+        
+          <li><a href="/knowledge/tools/">Toolbox</a></li>
+        
+          <li><a href="/knowledge/userscript/">Userscripts</a></li>
+        
+          <li><a href="/profile/">Profile</a></li>
+        
+        </ul>
+      </aside>
+      
+    </main>
+    <footer>
+      <p>Copyright (c) 2020 TANIGUCHI Masaya All Rights Reserved.</p>
+      <p>Please tell me on <a href="https://github.com/nzt/docs">GitHub</a> if you found any typos and misstatements.</p>
+    </footer>
+  </body>
+</html>
